@@ -1,5 +1,5 @@
 const questions = {
-    Thuoc: [
+    thuoc: [
         {
             question: "Để đăng nhập vào RSA Ecom, bước đầu tiên là gì?",
             options: ["Nhập mã OTP", "Lựa chọn hệ thống “Long Châu”", "Nhấn chọn “Đăng nhập”", "Nhập ghi chú của sale"],
@@ -101,7 +101,7 @@ const questions = {
             correct: "Trước khi chọn phương thức thanh toán"
         }
     ],
-    Vaccine: [
+    vaccine: [
         {
             question: "Để đăng nhập RSA Vaccine Ecom, bước đầu tiên là truy cập link nào?",
             options: ["https://uat-vaccine-ecom.frt.vn/", "https://vaccine-ecom.frt.vn/", "https://longchauecom.frt.vn/", "https://return-home.frt.vn/"],
