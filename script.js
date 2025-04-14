@@ -87,11 +87,19 @@ function submitQuiz() {
 }
 
 function saveResult(name, insideCode, department, team, score) {
+    fetch("https://script.google.com/macros/s/AKfycbxacHRhbxYGrnxdifMh7HKThJswrSunSCXw-jGZibL6lC8kFDUwI9BZ2sQJPsuHva8OFw/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, insideCode, department, team, score: `${score}/10` })
+    }).then(() => console.log("Kết quả đã lưu!"));
     console.log({
         name,
         insideCode,
         department,
         team,
         score: `${score}/10`
+    });
+}
     });
 }
