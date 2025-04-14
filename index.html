@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra định kỳ nhân viên</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="login-form">
+        <h2>Đăng nhập bài kiểm tra</h2>
+        <form id="info-form">
+            <label>Team:</label>
+            <select id="team" required>
+                <option value="">Chọn team</option>
+                <option value="Thuoc">Thuốc</option>
+                <option value="Vaccine">Vaccine</option>
+            </select><br>
+            <label>Phòng ban:</label>
+            <select id="department" required>
+                <option value="">Chọn phòng ban</option>
+            </select><br>
+            <label>Họ tên:</label>
+            <input type="text" id="name" required><br>
+            <label>Mã inside:</label>
+            <input type="text" id="inside-code" required><br>
+            <label>Mật khẩu:</label>
+            <input type="password" id="password" required><br>
+            <button type="submit">Bắt đầu</button>
+        </form>
+    </div>
+
+    <div id="quiz-form" style="display:none;">
+        <h2>Bài kiểm tra (<span id="timer">20:00</span>)</h2>
+        <form id="quiz">
+            <!-- Câu hỏi sẽ được thêm bằng JS -->
+        </form>
+        <button id="submit-quiz">Nộp bài</button>
+    </div>
+
+    <div id="result" style="display:none;">
+        <h2>Bạn đã nộp bài thành công!</h2>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
