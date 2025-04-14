@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const submitQuizButton = document.getElementById("submit-quiz");
     const timerDisplay = document.getElementById("timer");
 
-    // Mật khẩu để truy cập bài kiểm tra (thay đổi nếu cần)
+    // Mật khẩu để truy cập bài kiểm tra
     const correctPassword = "matkhau123";
 
     // Kiểm tra các phần tử cần thiết
@@ -28,9 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
         // Log giá trị team để debug
         console.log("Team được chọn:", this.value);
 
-        // Chuẩn hóa giá trị team (bỏ qua hoa thường)
-        const selectedTeam = this.value.toLowerCase();
-
         // Danh sách phòng ban theo team
         const departments = {
             "thuoc": ["Call", "Tick", "Chat", "CTV_Sale chat Zalo", "CTV_DSCM"],
@@ -38,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
         };
 
         // Lấy danh sách phòng ban theo team đã chọn
-        const selectedDepartments = departments[selectedTeam] || [];
+        const selectedDepartments = departments[this.value] || [];
 
         // Log danh sách phòng ban để debug
         console.log("Danh sách phòng ban:", selectedDepartments);
@@ -53,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Nếu không có phòng ban, hiển thị thông báo lỗi
         if (selectedDepartments.length === 0) {
-            console.error("Không tìm thấy danh sách phòng ban cho team:", selectedTeam);
+            console.error("Không tìm thấy danh sách phòng ban cho team:", this.value);
         }
     });
 
@@ -79,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Tải câu hỏi từ questions.js
     function loadQuiz() {
-        const team = teamSelect.value.toLowerCase();
+        const team = teamSelect.value;
         if (!team || !questions[team]) {
             console.error("Team không hợp lệ hoặc không có câu hỏi: ", team);
             alert("Không tìm thấy câu hỏi cho team này. Vui lòng thử lại.");
@@ -125,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
     submitQuizButton.addEventListener("click", submitQuiz);
 
     function submitQuiz() {
-        const team = teamSelect.value.toLowerCase();
+        const team = teamSelect.value;
         const name = document.getElementById("name").value;
         const insideCode = document.getElementById("inside-code").value;
         const department = departmentSelect.value;
