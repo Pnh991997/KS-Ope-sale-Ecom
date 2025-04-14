@@ -87,18 +87,21 @@ function submitQuiz() {
 }
 
 function saveResult(name, insideCode, department, team, score) {
-    fetch("https://script.google.com/macros/s/AKfycbxacHRhbxYGrnxdifMh7HKThJswrSunSCXw-jGZibL6lC8kFDUwI9BZ2sQJPsuHva8OFw/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbzd3gE5Td_aDd52Lep_ZqlAattg81fc8DgpOdVJjzqm4VVRo9c7LJjlQwvDERzVmPdkDg/exec", {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, insideCode, department, team, score: `${score}/10` })
-    }).then(() => console.log("Kết quả đã lưu!"));
+    }).then(() => console.log("Kết quả đã lưu vào Google Sheets!"))
+      .catch(error => console.error("Lỗi khi lưu kết quả: ", error));
     console.log({
         name,
         insideCode,
         department,
         team,
         score: `${score}/10`
+    });
+}
     });
 }
     });
