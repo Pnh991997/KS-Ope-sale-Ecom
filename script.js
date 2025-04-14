@@ -25,14 +25,23 @@ document.addEventListener("DOMContentLoaded", function() {
         // Reset dropdown phòng ban
         departmentSelect.innerHTML = "<option value=''>Chọn phòng ban</option>";
 
+        // Log giá trị team để debug
+        console.log("Team được chọn:", this.value);
+
+        // Chuẩn hóa giá trị team (bỏ qua hoa thường)
+        const selectedTeam = this.value.toLowerCase();
+
         // Danh sách phòng ban theo team
         const departments = {
-            "Thuoc": ["Call", "Tick", "Chat", "CTV_Sale chat Zalo", "CTV_DSCM"],
-            "Vaccine": ["Tổng đài", "Chat", "Xử lý yêu cầu", "Comment", "Vệ tinh"]
+            "thuoc": ["Call", "Tick", "Chat", "CTV_Sale chat Zalo", "CTV_DSCM"],
+            "vaccine": ["Tổng đài", "Chat", "Xử lý yêu cầu", "Comment", "Vệ tinh"]
         };
 
         // Lấy danh sách phòng ban theo team đã chọn
-        const selectedDepartments = departments[this.value] || [];
+        const selectedDepartments = departments[selectedTeam] || [];
+
+        // Log danh sách phòng ban để debug
+        console.log("Danh sách phòng ban:", selectedDepartments);
 
         // Thêm các tùy chọn vào dropdown
         selectedDepartments.forEach(dep => {
@@ -41,6 +50,11 @@ document.addEventListener("DOMContentLoaded", function() {
             option.textContent = dep;
             departmentSelect.appendChild(option);
         });
+
+        // Nếu không có phòng ban, hiển thị thông báo lỗi
+        if (selectedDepartments.length === 0) {
+            console.error("Không tìm thấy danh sách phòng ban cho team:", selectedTeam);
+        }
     });
 
     // Xử lý form đăng nhập
@@ -65,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Tải câu hỏi từ questions.js
     function loadQuiz() {
-        const team = teamSelect.value;
+        const team = teamSelect.value.toLowerCase();
         if (!team || !questions[team]) {
             console.error("Team không hợp lệ hoặc không có câu hỏi: ", team);
             alert("Không tìm thấy câu hỏi cho team này. Vui lòng thử lại.");
@@ -111,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
     submitQuizButton.addEventListener("click", submitQuiz);
 
     function submitQuiz() {
-        const team = teamSelect.value;
+        const team = teamSelect.value.toLowerCase();
         const name = document.getElementById("name").value;
         const insideCode = document.getElementById("inside-code").value;
         const department = departmentSelect.value;
@@ -136,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Lưu kết quả (gửi đến Google Sheets)
     function saveResult(name, insideCode, department, team, score) {
         // URL Web app từ Google Apps Script (thay YOUR_WEB_APP_URL bằng URL bạn lấy được)
-        const webAppUrl = "https://script.google.com/macros/s/AKfycbzd3gE5Td_aDd52Lep_ZqlAattg81fc8DgpOdVJjzqm4VVRo9c7LJjlQwvDERzVmPdkDg/exec";
+        const webAppUrl = "YOUR_WEB_APP_URL";
 
         fetch(webAppUrl, {
             method: "POST",
@@ -156,7 +170,3 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
-    });
-}
-    });
-}
